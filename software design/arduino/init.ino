@@ -22,7 +22,8 @@
 }
 
 void initI2C(void) {
-  Wire.begin();
+  Wire.begin(SLAVE_I2C_ADDRESS);
+  Wire.onRequest(isrOnI2cRequest);
 }
 
 void initSensors(void) {

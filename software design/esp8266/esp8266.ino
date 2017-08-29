@@ -17,9 +17,10 @@
     along with SolarWaterHeaterMonitor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <ESP8266WiFi.h>          // https://github.com/esp8266/Arduino/
 #include <Wire.h>                 // https://github.com/esp8266/Arduino/
-#include <SI7021.h>               // https://github.com/mlsorensen/SI7021
 #include "structures.h"           // https://github.com/ClemRz/Introduction-to-IoT#use-structures
+#include "HTTPSRedirect.h"        // https://github.com/electronicsguy/ESP8266/tree/master/HTTPSRedirect
 
 // General
 #define MICROSEC                  1000000L
@@ -32,22 +33,59 @@
 // Debug
 #define DEBUG                     1               // Debug current sketch
 
+// Custom settings
+#define DEFAULT_POLLING_RATE      5*SEC
+#define SSID                      "GENERAL"
+#define PASSWORD                  "LEARNFROMYESTERDAYLIVEFORTODAY"
+#define SCRIPT_ID                 "AKfycbzQfHhvTwNnsGMGTlpgQLmTLnjaEVfGweY9RI3Hl-fYb5jz6-wD"
+
 // I2C
 #define SLAVE_I2C_ADDRESS         0x09
 
+// Pins
+#define SDA                       4               // I2C data
+#define SCL                       5               // I2C clock
+#define SLAVE_RESET               12              // Connected to slave's RST pin
+
+// HTTPS parameters
+#define HTTPS_PORT                443
+#define HOST                      "script.google.com"
+#define URL                       "https://" HOST "/macros/s/" SCRIPT_ID "/exec"
+#define MAX_WIFI_ATTEMPTS         15
+#define MAX_HTTPS_ATTEMPTS        5
+#define HTTPS_REINTENT_DELAY      2*SEC
+
+// Deep-sleep time limit
+#define MAX_SLEEP_TIME        71L*MINUTE
+
 // Global variables
-SI7021 _si7021;
 Readings _readings;
+HTTPSRedirect* _client = NULL;
+long _pollingRate = DEFAULT_POLLING_RATE;
+int _attempts = 0;
 
 void setup() {
 #if DEBUG
   initSerial();
+Serial.println(sizeof(int));
 #endif
   initI2C();
-  initSensors();
-  performReadings();
-  sendReadings();
+  initSlave();
+  delay(2*SEC*MILLISEC);
+  while(!requestReadings()) yield();
+#if DEBUG
+  printReadings();
+#endif
+  initWiFi();
 }
 
 void loop() {
+  if (_attempts <= MAX_WIFI_ATTEMPTS) {
+    _attempts = 0;
+    String response = httpsGet();
+    if (response != "") {
+      _pollingRate = response.toInt();
+    } // else saveToSpiffs();
+  } // else saveToSpiffs();
+  sleep();
 }

@@ -20,11 +20,13 @@
 #ifndef _STRUCTURES_H
 #define _STRUCTURES_H
 
-#define READINGS_SIZE             8              // Size of the register (consider nuber of bytes)
+#define REG_INT_SIZE              4
+#define REG_BYTE_SIZE             REG_INT_SIZE*2 // Size of the register (consider nuber of bytes)
 
 typedef struct {
   union {
-    byte byteAt[READINGS_SIZE];
+    byte byteAt[REG_BYTE_SIZE];
+    int intAt[REG_INT_SIZE];
     struct {
       int ambientCelsiusHundredths;
       int ambientHumidityPercent;

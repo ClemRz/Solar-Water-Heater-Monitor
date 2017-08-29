@@ -19,17 +19,52 @@
 
  void initSerial(void) {
   Serial.begin(9600);
+  for(uint8_t t = 4; t > 0; t--) {
+    Serial.println(F("Boot wait"));
+    Serial.flush();
+    delay(1000);
+  }
 }
 
 void initI2C(void) {
   Wire.begin();
 }
 
-void initSensors(void) {
-  initSi7021();
+void initSlave(void) {
+  pinMode(SLAVE_RESET, OUTPUT);
+  digitalWrite(SLAVE_RESET, LOW);
+  delay(10);
+  digitalWrite(SLAVE_RESET, HIGH);
 }
 
-void initSi7021(void) {
-  _si7021.begin();
+void initWiFi(void) {
+#if DEBUG
+  Serial.println(F("Start WiFi"));
+#endif
+  WiFi.persistent(true);
+  if (WiFi.status() != WL_CONNECTED) {
+    WiFi.begin(SSID, PASSWORD);
+    while (WiFi.status() != WL_CONNECTED && _attempts <= MAX_WIFI_ATTEMPTS) {
+      yield();
+      delay(500);
+#if DEBUG
+      Serial.print(F("."));
+#endif
+      _attempts++;
+    }
+  }
+#if DEBUG
+  Serial.println();
+  if (_attempts > MAX_WIFI_ATTEMPTS) {
+    Serial.print(F("Failed to connect to "));
+    Serial.println(SSID);
+  } else {
+    Serial.print(F("Connected to "));
+    Serial.println(SSID);
+    Serial.print(F("IP address: "));
+    Serial.println(WiFi.localIP());
+    Serial.print(F("Mac addresss: "));
+    Serial.println(WiFi.macAddress());
+  }
+#endif
 }
-

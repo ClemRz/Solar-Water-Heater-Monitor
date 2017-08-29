@@ -17,7 +17,8 @@
     along with SolarWaterHeaterMonitor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <Wire.h>                 // https://github.com/esp8266/Arduino/
+#include <avr/sleep.h>
+#include <Wire.h>
 #include <SI7021.h>               // https://github.com/mlsorensen/SI7021
 #include "structures.h"           // https://github.com/ClemRz/Introduction-to-IoT#use-structures
 
@@ -35,19 +36,21 @@
 // I2C
 #define SLAVE_I2C_ADDRESS         0x09
 
+// Pins
+#define INPUT_THERMISTOR          A0
+#define OUTPUT_THERMISTOR         A1
+
 // Global variables
 SI7021 _si7021;
 Readings _readings;
 
-void setup() {
+void setup(void) {
 #if DEBUG
   initSerial();
 #endif
   initI2C();
   initSensors();
   performReadings();
-  sendReadings();
 }
 
-void loop() {
-}
+void loop(void) {}

@@ -17,8 +17,6 @@
     along with SolarWaterHeaterMonitor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-void sendReadings(void) {
-  Wire.beginTransmission(SLAVE_I2C_ADDRESS);
-  Wire.write(_readings.byteAt, READINGS_SIZE);
-  Wire.endTransmission();
+void isrOnI2cRequest(void) {
+  Wire.write(_readings.byteAt, REG_BYTE_SIZE);
 }
