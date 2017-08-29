@@ -20,8 +20,8 @@
  void performReadings(void) {
   _readings.ambientCelsiusHundredths = getAmbientCelsiusHundredths();
   _readings.ambientHumidityPercent = getAmbientHumidityPercent();
-  _readings.inputCelsiusHundredths = 
-  _readings.outputCelsiusHundredths = 
+  _readings.inputCelsiusHundredths = getInputCelsiusHundredths();
+  _readings.outputCelsiusHundredths = getOuptuCelsiusHundredths();
 #if DEBUG
   printReadings();
 #endif
@@ -40,6 +40,6 @@ int getInputCelsiusHundredths(void) {
 }
 
 int getOuptuCelsiusHundredths(void) {
-  return analogRead(OUTUT_THERMISTOR);
+  return analogRead(OUTPUT_THERMISTOR);
 }
 

@@ -23,12 +23,3 @@
   }
 }
 
-void sleepNow(void) {
-#if DEBUG
-  Serial.flush();
-#endif
-  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
-  sleep_enable();
-  sleep_mode();
-}
-

@@ -17,7 +17,6 @@
     along with SolarWaterHeaterMonitor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <avr/sleep.h>
 #include <Wire.h>
 #include <SI7021.h>               // https://github.com/mlsorensen/SI7021
 #include "structures.h"           // https://github.com/ClemRz/Introduction-to-IoT#use-structures
