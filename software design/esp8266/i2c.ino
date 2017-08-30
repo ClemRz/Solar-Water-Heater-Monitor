@@ -21,11 +21,10 @@ bool requestReadings(void) {
   Wire.requestFrom(SLAVE_I2C_ADDRESS, REG_BYTE_SIZE);
   int i = 0;
   while (Wire.available()) {
-    yield();
-    if (i < REG_BYTE_SIZE) { // Read enough bytes to fill the register
+    if (i < REG_BYTE_SIZE) {
       _readings.byteAt[i] = Wire.read();
       i++;
-    } else Wire.read(); // Ignore the rest of it
+    }
   }
   return i == REG_BYTE_SIZE;
 }
