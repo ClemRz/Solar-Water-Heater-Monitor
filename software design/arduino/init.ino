@@ -28,9 +28,15 @@ void initI2C(void) {
 
 void initSensors(void) {
   initSi7021();
+  initThermistors();
 }
 
 void initSi7021(void) {
   _si7021.begin();
+}
+
+void initThermistors(void) {
+  pinMode(THERMISTOR_ENABLE, OUTPUT);
+  disableThermistors();
 }
 

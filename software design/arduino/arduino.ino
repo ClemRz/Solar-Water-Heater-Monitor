@@ -35,7 +35,17 @@
 // I2C
 #define SLAVE_I2C_ADDRESS         0x09
 
+// Sampling
+#define ANALOG_READ_SAMPLES       8               // Number of averaged readings
+
+// Thermistors
+#define SERIES_RESISTANCE_KOHM    10
+#define NOMINAL_THERMISTANCE_KOHN 5
+#define NOMINAL_TEMPERATURE       25
+#define THERMISTOR_COEFF          3950
+
 // Pins
+#define THERMISTOR_ENABLE         7
 #define INPUT_THERMISTOR          A0
 #define OUTPUT_THERMISTOR         A1
 

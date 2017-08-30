@@ -36,10 +36,39 @@ int getAmbientHumidityPercent(void) {
 }
 
 int getInputCelsiusHundredths(void) {
-  return analogRead(INPUT_THERMISTOR);
+  return getTemperatureCelsiusHundredths(INPUT_THERMISTOR);
 }
 
 int getOuptuCelsiusHundredths(void) {
-  return analogRead(OUTPUT_THERMISTOR);
+  return getTemperatureCelsiusHundredths(OUTPUT_THERMISTOR);
+}
+
+int getTemperatureCelsiusHundredths(int pin) {
+  return (int)(getTemperatureCelsius(pin) * 100);
+}
+
+double getTemperatureCelsius(int pin) { // https://learn.adafruit.com/thermistor/using-a-thermistor
+  double steinhart;
+  steinhart = getThermistance(pin, SERIES_RESISTANCE_KOHM) / (NOMINAL_THERMISTANCE_KOHN * 1000);
+  steinhart = log(steinhart);
+  steinhart /= THERMISTOR_COEFF;
+  steinhart += 1.0 / cToK(NOMINAL_TEMPERATURE);
+  steinhart = 1.0 / steinhart;
+  return kToC(steinhart);
+}
+
+double getThermistance(int pin, int rSeriesKOhm) {
+  enableThermistors();
+  double thermistance = getResistance(pin, rSeriesKOhm);
+  disableThermistors();
+  return thermistance;
+}
+
+void disableThermistors(void) {
+  digitalWrite(THERMISTOR_ENABLE, LOW);
+}
+
+void enableThermistors(void) {
+  digitalWrite(THERMISTOR_ENABLE, HIGH);
 }
 

@@ -23,3 +23,21 @@
   }
 }
 
+double getAverageAnalogRead(int pinToRead) {
+  long runningValue = 0;
+  for(int x=0; x<ANALOG_READ_SAMPLES; x++) runningValue += analogRead(pinToRead);
+  return((double)runningValue/ANALOG_READ_SAMPLES);
+}
+
+double getResistance(int pin, int rSeriesKOhm) {
+  return rSeriesKOhm * 1000.0 / (1023 / getAverageAnalogRead(pin) - 1);
+}
+
+double cToK(double celsius) {
+  return celsius + 273.15;
+}
+
+double kToC(double kelvin) {
+  return kelvin - 273.15;
+}
+
