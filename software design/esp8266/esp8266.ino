@@ -35,9 +35,9 @@
 
 // Custom settings
 #define DEFAULT_POLLING_RATE      5*SEC
-#define SSID                      "GENERAL"
-#define PASSWORD                  "LEARNFROMYESTERDAYLIVEFORTODAY"
-#define SCRIPT_ID                 "AKfycbzQfHhvTwNnsGMGTlpgQLmTLnjaEVfGweY9RI3Hl-fYb5jz6-wD"
+#define SSID                      "<SSID>"
+#define PASSWORD                  "<PASSWORD>"
+#define SCRIPT_ID                 "<GOOGLE SPREADSHEET ID>"
 
 // I2C
 #define SLAVE_I2C_ADDRESS         0x09
@@ -67,7 +67,6 @@ int _attempts = 0;
 void setup() {
 #if DEBUG
   initSerial();
-Serial.println(sizeof(int));
 #endif
   initI2C();
   initSlave();
