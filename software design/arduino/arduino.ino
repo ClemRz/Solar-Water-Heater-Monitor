@@ -22,6 +22,7 @@
 #include "structures.h"           // https://github.com/ClemRz/Introduction-to-IoT#use-structures
 
 // General
+#define K                         1000
 #define MICROSEC                  1000000L
 #define MILLISEC                  1000L
 #define SEC                       1L
@@ -38,20 +39,29 @@
 // Sampling
 #define ANALOG_READ_SAMPLES       8               // Number of averaged readings
 
-// Thermistors
-#define SERIES_RESISTANCE_KOHM    10
-#define NOMINAL_THERMISTANCE_KOHN 5
-#define NOMINAL_TEMPERATURE       25
-#define THERMISTOR_COEFF          3950
-
 // Pins
 #define THERMISTOR_ENABLE         7
-#define INPUT_THERMISTOR          A0
-#define OUTPUT_THERMISTOR         A1
+#define THERMISTOR_2              A0
+#define THERMISTOR_3              A1
+#define INPUT_THERMISTOR          THERMISTOR_2
+#define OUTPUT_THERMISTOR         THERMISTOR_3
+
+// Thermistors
+#define CST_SIZE                  1 + max(INPUT_THERMISTOR, OUTPUT_THERMISTOR)
+#define SERIES_RESISTANCE_OHM     2.19*K
+  // Thermistor #2
+#define A2                        0.000920434
+#define B2                        0.000281349
+#define C2                        0.0000000397159
+  // Thermistor #3
+#define A3                        0.000977495
+#define B3                        0.000271468
+#define C3                        0.0000000921738
 
 // Global variables
 SI7021 _si7021;
 Readings _readings;
+double _A[CST_SIZE], _B[CST_SIZE], _C[CST_SIZE];
 
 void setup(void) {
 #if DEBUG

@@ -29,8 +29,8 @@ double getAverageAnalogRead(int pinToRead) {
   return((double)runningValue/ANALOG_READ_SAMPLES);
 }
 
-double getResistance(int pin, int rSeriesKOhm) {
-  return rSeriesKOhm * 1000.0 / (1023 / getAverageAnalogRead(pin) - 1);
+double getResistance(int pin, int rSeriesOhm) {
+  return rSeriesOhm / (1023 / getAverageAnalogRead(pin) - 1);
 }
 
 double cToK(double celsius) {

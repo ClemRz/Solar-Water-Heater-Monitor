@@ -47,19 +47,22 @@ int getTemperatureCelsiusHundredths(int pin) {
   return (int)(getTemperatureCelsius(pin) * 100);
 }
 
-double getTemperatureCelsius(int pin) { // https://learn.adafruit.com/thermistor/using-a-thermistor
-  double steinhart;
-  steinhart = getThermistance(pin, SERIES_RESISTANCE_KOHM) / (NOMINAL_THERMISTANCE_KOHN * 1000);
-  steinhart = log(steinhart);
-  steinhart /= THERMISTOR_COEFF;
-  steinhart += 1.0 / cToK(NOMINAL_TEMPERATURE);
+// http://www.ametherm.com/thermistor/ntc-thermistors-steinhart-and-hart-equation
+double getTemperatureCelsius(int pin) {
+  double logR = log(getThermistance(pin, SERIES_RESISTANCE_OHM));
+  double steinhart = _A[pin];
+  steinhart += _B[pin] * logR;
+  steinhart += _C[pin] * pow(logR, 3);
   steinhart = 1.0 / steinhart;
   return kToC(steinhart);
 }
 
-double getThermistance(int pin, int rSeriesKOhm) {
+double getThermistance(int pin, int rSeriesOhm) {
   enableThermistors();
-  double thermistance = getResistance(pin, rSeriesKOhm);
+  double thermistance = getResistance(pin, rSeriesOhm);
+#if DEBUG
+  Serial.print(thermistance); Serial.println(F(" Ohm"));
+#endif
   disableThermistors();
   return thermistance;
 }

@@ -19,6 +19,7 @@
 
  void initSerial(void) {
   Serial.begin(9600);
+  Serial.println();
 }
 
 void initI2C(void) {
@@ -29,6 +30,12 @@ void initI2C(void) {
 void initSensors(void) {
   initSi7021();
   initThermistors();
+  _A[THERMISTOR_2] = A2;
+  _B[THERMISTOR_2] = B2;
+  _C[THERMISTOR_2] = C2;
+  _A[THERMISTOR_3] = A3;
+  _B[THERMISTOR_3] = B3;
+  _C[THERMISTOR_3] = C3;
 }
 
 void initSi7021(void) {
@@ -36,6 +43,9 @@ void initSi7021(void) {
 }
 
 void initThermistors(void) {
+  analogReference(DEFAULT);
+  pinMode(INPUT_THERMISTOR, INPUT);
+  pinMode(OUTPUT_THERMISTOR, INPUT);
   pinMode(THERMISTOR_ENABLE, OUTPUT);
   disableThermistors();
 }
