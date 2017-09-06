@@ -18,8 +18,16 @@ function logToSpreadsheet(spreadsheetId, data) {
       row = [new Date()];
 
   for (var key in data) {
-    if (!data.hasOwnProperty(key)) continue;
-    row.push(data[key]);
+    if (!data.hasOwnProperty(key) || data[key] === '') continue;
+    var value = data[key];
+    if (key.toLowerCase().indexOf('csv') > -1) {
+      value = value.split(',');
+      for (var i = 0; i < value.length; i ++) {
+        row.push(value[i]);
+      }
+    } else {
+      row.push(value);
+    }
   }
   sheet.appendRow(row);
 }

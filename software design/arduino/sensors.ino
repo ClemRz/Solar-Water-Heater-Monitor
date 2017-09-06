@@ -73,5 +73,6 @@ void disableThermistors(void) {
 
 void enableThermistors(void) {
   digitalWrite(THERMISTOR_ENABLE, HIGH);
+  delay(100);
 }
 

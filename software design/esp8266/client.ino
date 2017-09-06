@@ -41,8 +41,8 @@ String httpsGet(void) {
     return "";
   }
   
-  String url = String(URL) + "?";
-  for (int i=0; i<REG_INT_SIZE; i++) url += String((char)(i+97)) + "=" + String(_readings.intAt[i]) + "&";
+  String url = String(URL) + "?valCsv=";
+  for (int i=0; i<REG_INT_SIZE; i++) url += String(_readings.intAt[i]) + ",";
 #if DEBUG
     Serial.print(F("URL: ")); Serial.println(url);
 #endif
