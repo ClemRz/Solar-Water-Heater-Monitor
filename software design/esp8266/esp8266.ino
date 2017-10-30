@@ -34,10 +34,10 @@
 #define DEBUG                     1               // Debug current sketch
 
 // Custom settings
-#define DEFAULT_POLLING_RATE      5*SEC
-#define SSID                      "<SSID>"
-#define PASSWORD                  "<PASSWORD>"
-#define SCRIPT_ID                 "<GOOGLE SPREADSHEET ID>"
+#define DEFAULT_POLLING_RATE      1*SEC
+#define SSID                      "rz_ntw" //"<SSID>"
+#define PASSWORD                  "tortolitos" //"<PASSWORD>"
+#define SCRIPT_ID                 "AKfycbzQfHhvTwNnsGMGTlpgQLmTLnjaEVfGweY9RI3Hl-fYb5jz6-wD" //"<GOOGLE SPREADSHEET ID>"
 
 // I2C
 #define SLAVE_I2C_ADDRESS         0x09
@@ -45,24 +45,26 @@
 // Pins
 #define SDA                       4               // I2C data
 #define SCL                       5               // I2C clock
-#define SLAVE_RESET               12              // Connected to slave's RST pin
+#define SLAVE_PING                12              // Connected to slave input pin
 
 // HTTPS parameters
 #define HTTPS_PORT                443
 #define HOST                      "script.google.com"
 #define URL                       "https://" HOST "/macros/s/" SCRIPT_ID "/exec"
+#define MAX_SLAVE_ATTEMPTS        3
 #define MAX_WIFI_ATTEMPTS         15
 #define MAX_HTTPS_ATTEMPTS        5
+#define WIFI_REINTENT_DELAY       500 //ms
 #define HTTPS_REINTENT_DELAY      2*SEC
+#define SLAVE_REINTENT_DELAY      1*SEC
 
 // Deep-sleep time limit
-#define MAX_SLEEP_TIME        71L*MINUTE
+#define MAX_SLEEP_TIME            71L*MINUTE
 
 // Global variables
 Readings _readings;
 HTTPSRedirect* _client = NULL;
 long _pollingRate = DEFAULT_POLLING_RATE;
-int _attempts = 0;
 
 void setup() {
 #if DEBUG
@@ -70,21 +72,14 @@ void setup() {
 #endif
   initI2C();
   initSlave();
-  delay(2*SEC*MILLISEC);
-  while(!requestReadings()) yield();
-#if DEBUG
-  printReadings();
-#endif
+  pingSlave();
+  requestReadings();
   initWiFi();
 }
 
 void loop() {
-  if (_attempts <= MAX_WIFI_ATTEMPTS) {
-    _attempts = 0;
-    String response = httpsGet();
-    if (response != "") {
-      _pollingRate = response.toInt();
-    } // else saveToSpiffs();
-  } // else saveToSpiffs();
+  String response = httpsGet();
+  if (response != "") _pollingRate = response.toInt();
   sleep();
 }
+

@@ -22,6 +22,10 @@
   Serial.println();
 }
 
+void initLed(void) {
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
 void initI2C(void) {
   Wire.begin(SLAVE_I2C_ADDRESS);
   Wire.onRequest(isrOnI2cRequest);
@@ -44,6 +48,7 @@ void initSi7021(void) {
 
 void initThermistors(void) {
   analogReference(DEFAULT);
+  pinMode(MASTER_PING, INPUT_PULLUP);
   pinMode(INPUT_THERMISTOR, INPUT);
   pinMode(OUTPUT_THERMISTOR, INPUT);
   pinMode(THERMISTOR_ENABLE, OUTPUT);

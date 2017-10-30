@@ -20,10 +20,10 @@
 String httpsGet(void) {
   HTTPSRedirect* client = new HTTPSRedirect(HTTPS_PORT);
   bool connected = false;
-  for (int i=0; i<MAX_HTTPS_ATTEMPTS; i++) {
+  int attemps = 0;
+  while (!connected && attemps < MAX_HTTPS_ATTEMPTS) {
     yield();
-    int retval = client->connect(HOST, HTTPS_PORT);
-    if (retval == 1) {
+    if (client->connect(HOST, HTTPS_PORT) == 1) {
        connected = true;
        break;
 #if DEBUG
@@ -31,6 +31,7 @@ String httpsGet(void) {
       Serial.println(F("Connection failed. Retrying..."));
 #endif
     }
+    attemps ++;
     delay(HTTPS_REINTENT_DELAY*MILLISEC);
   }
 
@@ -42,7 +43,7 @@ String httpsGet(void) {
   }
   
   String url = String(URL) + "?valCsv=";
-  for (int i=0; i<REG_INT_SIZE; i++) url += String(_readings.intAt[i]) + ",";
+  for (int i = 0; i < REG_INT_SIZE; i ++) url += String(_readings.intAt[i]) + "%2C";
 #if DEBUG
     Serial.print(F("URL: ")); Serial.println(url);
 #endif

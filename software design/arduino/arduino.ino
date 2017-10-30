@@ -36,24 +36,28 @@
 // I2C
 #define SLAVE_I2C_ADDRESS         0x09
 
+// Ping
+#define DEBOUNCE_DELAY_MS         10L
+
 // Sampling
 #define ANALOG_READ_SAMPLES       8               // Number of averaged readings
 
 // Pins
 #define THERMISTOR_ENABLE         7
-#define THERMISTOR_2              A0
-#define THERMISTOR_3              A1
+#define MASTER_PING               10
+#define THERMISTOR_2              A1
+#define THERMISTOR_3              A0
 #define INPUT_THERMISTOR          THERMISTOR_2
 #define OUTPUT_THERMISTOR         THERMISTOR_3
 
 // Thermistors
 #define CST_SIZE                  1 + max(INPUT_THERMISTOR, OUTPUT_THERMISTOR)
 #define SERIES_RESISTANCE_OHM     2.19*K
-  // Thermistor #2
-#define A2                        0.000920434
-#define B2                        0.000281349
-#define C2                        0.0000000397159
-  // Thermistor #3
+  //without marking
+#define A2                        0.0010175900000
+#define B2                        0.0002663480000
+#define C2                        0.0000001030690
+  // Thermistor makred #3
 #define A3                        0.000977495
 #define B3                        0.000271468
 #define C3                        0.0000000921738
@@ -62,14 +66,38 @@
 SI7021 _si7021;
 Readings _readings;
 double _A[CST_SIZE], _B[CST_SIZE], _C[CST_SIZE];
+unsigned long _lastDebounceTime = 0;
+bool
+  _lastPingState,
+  _currentPingState;
 
 void setup(void) {
 #if DEBUG
   initSerial();
 #endif
+  initLed();
   initI2C();
   initSensors();
-  performReadings();
 }
 
-void loop(void) {}
+void loop(void) {
+  if (debounce(MASTER_PING)) {
+    turnLedOn();
+    performReadings();
+    turnLedOff();
+  }
+}
+
+bool debounce(int pin) {
+  bool ret = false, reading = digitalRead(pin);
+  reading = !reading;
+  if (reading != _lastPingState) _lastDebounceTime = millis();
+
+  if ((millis() - _lastDebounceTime) > DEBOUNCE_DELAY_MS && reading != _currentPingState) {
+    _currentPingState = reading;
+    ret = reading;
+  }
+
+  _lastPingState = reading;
+  return ret;
+}

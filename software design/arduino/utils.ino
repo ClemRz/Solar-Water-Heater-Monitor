@@ -41,3 +41,11 @@ double kToC(double kelvin) {
   return kelvin - 273.15;
 }
 
+void turnLedOn(void) {
+  digitalWrite(LED_BUILTIN, HIGH);
+}
+
+void turnLedOff(void) {
+  digitalWrite(LED_BUILTIN, LOW);
+}
+

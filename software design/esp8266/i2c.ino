@@ -17,7 +17,26 @@
     along with SolarWaterHeaterMonitor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-bool requestReadings(void) {
+void pingSlave(void) {
+  digitalWrite(SLAVE_PING, LOW);
+  delay(1*SEC*MILLISEC);
+  digitalWrite(SLAVE_PING, HIGH);
+}
+
+void requestReadings(void) {
+  int attempts = 0;
+  while(!requestFromSlave() && attempts <= MAX_SLAVE_ATTEMPTS) {
+    yield();
+    attempts ++;
+    delay(SLAVE_REINTENT_DELAY*MILLISEC);
+  }
+  if (attempts > MAX_SLAVE_ATTEMPTS) sleep();
+#if DEBUG
+  printReadings();
+#endif
+}
+
+bool requestFromSlave(void) {
   Wire.requestFrom(SLAVE_I2C_ADDRESS, REG_BYTE_SIZE);
   int i = 0;
   while (Wire.available()) {
