@@ -32,4 +32,3 @@ void sleep() {
   if (_pollingRate == 0) _pollingRate = 1;
   ESP.deepSleep(_pollingRate * MICROSEC);
 }
-

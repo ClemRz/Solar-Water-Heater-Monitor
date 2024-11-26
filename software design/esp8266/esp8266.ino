@@ -20,7 +20,7 @@
 #include <ESP8266WiFi.h>          // https://github.com/esp8266/Arduino/
 #include <Wire.h>                 // https://github.com/esp8266/Arduino/
 #include "structures.h"           // https://github.com/ClemRz/Introduction-to-IoT#use-structures
-#include "HTTPSRedirect.h"        // https://github.com/electronicsguy/ESP8266/tree/master/HTTPSRedirect
+#include "HTTPSRedirect.h"        // https://github.com/electronicsguy/HTTPSRedirect
 
 // General
 #define MICROSEC                  1000000L
@@ -35,9 +35,9 @@
 
 // Custom settings
 #define DEFAULT_POLLING_RATE      1*SEC
-#define SSID                      "rz_ntw" //"<SSID>"
-#define PASSWORD                  "tortolitos" //"<PASSWORD>"
-#define SCRIPT_ID                 "AKfycbzQfHhvTwNnsGMGTlpgQLmTLnjaEVfGweY9RI3Hl-fYb5jz6-wD" //"<GOOGLE SPREADSHEET ID>"
+#define SSID                      "" //"<SSID>"
+#define PASSWORD                  "" //"<PASSWORD>"
+#define SCRIPT_ID                 "" //"<GOOGLE SPREADSHEET ID>"
 
 // I2C
 #define SLAVE_I2C_ADDRESS         0x09
@@ -63,7 +63,7 @@
 
 // Global variables
 Readings _readings;
-HTTPSRedirect* _client = NULL;
+HTTPSRedirect* _client = nullptr;
 long _pollingRate = DEFAULT_POLLING_RATE;
 
 void setup() {
@@ -78,8 +78,7 @@ void setup() {
 }
 
 void loop() {
-  String response = httpsGet();
+  String response = httpsPost();
   if (response != "") _pollingRate = response.toInt();
   sleep();
 }
-

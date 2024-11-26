@@ -1,0 +1,543 @@
+{
+    "0": 26,
+    "1": [
+        {
+            "1": "Custom",
+            "2": "CSV From Web URL (No Caching)",
+            "10": "uicol_label-100",
+            "15": "uicol_systemBlue-100",
+            "20": "uicol_systemBlue-100",
+            "25": "uicol_systemRed-100",
+            "30": "uicol_systemRed-100",
+            "46": "https:\/\/script.google.com\/macros\/s\/AKfycbz_XsA8a5Ho_RMk6d4ydkbnEetC2x2dsA3kRGhWRpyFhZ2dLInCGMnWBfUQjnmPsNwI\/exec",
+            "48": 4,
+            "50": 3,
+            "54": {
+                "a": [
+                    {
+                        "a": 1,
+                        "b": 770
+                    }
+                ],
+                "b": 22
+            },
+            "d0": 1,
+            "c": {
+                "b": 0,
+                "a": [
+                    {
+                        "a": 800,
+                        "b": 747
+                    }
+                ]
+            },
+            "d": {
+                "a": [
+                    {
+                        "b": 747,
+                        "a": 400
+                    }
+                ],
+                "b": 0
+            },
+            "f": "uicol_systemGreen-100",
+            "s": "AmbientTemp",
+            "e": {
+                "a": [
+                    {
+                        "b": 747,
+                        "a": 800
+                    }
+                ],
+                "b": 0
+            },
+            "z": "17"
+        },
+        {
+            "1": "Custom",
+            "2": "CSV From Web URL (No Caching)",
+            "10": "uicol_label-100",
+            "15": "uicol_systemBlue-100",
+            "20": "uicol_systemBlue-100",
+            "25": "uicol_systemRed-100",
+            "30": "uicol_systemRed-100",
+            "46": "https:\/\/script.google.com\/macros\/s\/AKfycbz_XsA8a5Ho_RMk6d4ydkbnEetC2x2dsA3kRGhWRpyFhZ2dLInCGMnWBfUQjnmPsNwI\/exec",
+            "47": 1,
+            "48": 4,
+            "50": 3,
+            "54": {
+                "a": [
+                    {
+                        "a": 1,
+                        "b": 774
+                    }
+                ],
+                "b": 22
+            },
+            "c": {
+                "a": [
+                    {
+                        "a": 800,
+                        "b": 774
+                    }
+                ],
+                "b": 0
+            },
+            "e": {
+                "a": [
+                    {
+                        "b": 774,
+                        "a": 800
+                    }
+                ],
+                "b": 0
+            },
+            "s": "InputTemp",
+            "d0": 2,
+            "f": "uicol_systemTeal-100",
+            "d": {
+                "a": [
+                    {
+                        "a": 400,
+                        "b": 774
+                    }
+                ],
+                "b": 0
+            },
+            "b": {
+                "b": 0,
+                "a": [
+                    {
+                        "b": 774,
+                        "a": 800
+                    }
+                ]
+            },
+            "z": "17"
+        },
+        {
+            "1": "Custom",
+            "2": "CSV From Web URL (No Caching)",
+            "10": "uicol_label-100",
+            "15": "uicol_systemBlue-100",
+            "20": "uicol_systemBlue-100",
+            "25": "uicol_systemRed-100",
+            "30": "uicol_systemRed-100",
+            "46": "https:\/\/script.google.com\/macros\/s\/AKfycbz_XsA8a5Ho_RMk6d4ydkbnEetC2x2dsA3kRGhWRpyFhZ2dLInCGMnWBfUQjnmPsNwI\/exec",
+            "47": 2,
+            "48": 4,
+            "50": 3,
+            "54": {
+                "a": [
+                    {
+                        "a": 1,
+                        "b": 776
+                    }
+                ],
+                "b": 22
+            },
+            "d0": 3,
+            "z": "17",
+            "b": {
+                "b": 0,
+                "a": [
+                    {
+                        "a": 1200,
+                        "b": 775
+                    }
+                ]
+            },
+            "s": "OutputTemp",
+            "c": {
+                "b": 0,
+                "a": [
+                    {
+                        "a": 800,
+                        "b": 775
+                    }
+                ]
+            },
+            "e": {
+                "b": 0,
+                "a": [
+                    {
+                        "a": 800,
+                        "b": 775
+                    }
+                ]
+            },
+            "f": "uicol_systemPink-100",
+            "d": {
+                "a": [
+                    {
+                        "a": 400,
+                        "b": 775
+                    }
+                ],
+                "b": 0
+            }
+        },
+        {
+            "1": "Custom",
+            "2": "CSV From Web URL (No Caching)",
+            "10": "uicol_label-100",
+            "15": "uicol_systemBlue-100",
+            "20": "uicol_systemBlue-100",
+            "25": "uicol_systemRed-100",
+            "30": "uicol_systemRed-100",
+            "46": "https:\/\/script.google.com\/macros\/s\/AKfycbz_XsA8a5Ho_RMk6d4ydkbnEetC2x2dsA3kRGhWRpyFhZ2dLInCGMnWBfUQjnmPsNwI\/exec",
+            "47": 3,
+            "48": 4,
+            "50": 3,
+            "54": {
+                "a": [
+                    {
+                        "b": 794,
+                        "a": 1
+                    }
+                ],
+                "b": 22
+            },
+            "e": {
+                "b": 0,
+                "a": [
+                    {
+                        "b": 779,
+                        "a": 800
+                    }
+                ]
+            },
+            "z": "17",
+            "d0": 5,
+            "s": "AmbientRH",
+            "f": "uicol_systemOrange-100",
+            "d": {
+                "a": [
+                    {
+                        "b": 779,
+                        "a": 400
+                    }
+                ],
+                "b": 0
+            }
+        },
+        {
+            "66": [
+                {
+                    "5": "Custom Text",
+                    "6": "Text",
+                    "25": "Ambient\nRH%"
+                }
+            ],
+            "e": {
+                "b": 0,
+                "a": [
+                    {
+                        "b": 780,
+                        "a": 400
+                    }
+                ]
+            },
+            "c": {
+                "b": 0,
+                "a": [
+                    {
+                        "b": 780,
+                        "a": 200
+                    }
+                ]
+            },
+            "d": {
+                "a": [
+                    {
+                        "a": 400,
+                        "b": 780
+                    }
+                ],
+                "b": 0
+            },
+            "b": {
+                "b": 0,
+                "a": [
+                    {
+                        "a": 400,
+                        "b": 780
+                    }
+                ]
+            },
+            "s": "AmbientRHLabel",
+            "d0": 6,
+            "z": "1"
+        },
+        {
+            "66": [
+                {
+                    "5": "Custom Text",
+                    "6": "Text",
+                    "25": "Ambient\nT°C"
+                }
+            ],
+            "d0": 7,
+            "e": {
+                "a": [
+                    {
+                        "a": 400,
+                        "b": 782
+                    }
+                ],
+                "b": 0
+            },
+            "z": "1",
+            "s": "AmbientTempLabel",
+            "d": {
+                "a": [
+                    {
+                        "b": 782,
+                        "a": 400
+                    }
+                ],
+                "b": 0
+            },
+            "c": {
+                "b": 0,
+                "a": [
+                    {
+                        "a": 1000,
+                        "b": 782
+                    }
+                ]
+            },
+            "b": {
+                "a": [
+                    {
+                        "b": 782,
+                        "a": 400
+                    }
+                ],
+                "b": 0
+            }
+        },
+        {
+            "2": {
+                "b": 0,
+                "a": [
+                    {
+                        "b": 784,
+                        "a": 1
+                    }
+                ]
+            },
+            "66": [
+                {
+                    "5": "Custom Text",
+                    "6": "Text",
+                    "25": "Input T°C"
+                }
+            ],
+            "z": "1",
+            "d0": 8,
+            "b": {
+                "b": 0,
+                "a": [
+                    {
+                        "a": 800,
+                        "b": 783
+                    }
+                ]
+            },
+            "s": "InputTempLabel",
+            "d": {
+                "b": 0,
+                "a": [
+                    {
+                        "b": 783,
+                        "a": 400
+                    }
+                ]
+            },
+            "e": {
+                "a": [
+                    {
+                        "a": 200,
+                        "b": 783
+                    }
+                ],
+                "b": 0
+            },
+            "c": {
+                "b": 0,
+                "a": [
+                    {
+                        "a": 600,
+                        "b": 783
+                    }
+                ]
+            }
+        },
+        {
+            "2": {
+                "b": 0,
+                "a": [
+                    {
+                        "a": 1,
+                        "b": 785
+                    }
+                ]
+            },
+            "66": [
+                {
+                    "5": "Custom Text",
+                    "6": "Text",
+                    "25": "Output T°C"
+                }
+            ],
+            "c": {
+                "b": 0,
+                "a": [
+                    {
+                        "a": 600,
+                        "b": 784
+                    }
+                ]
+            },
+            "e": {
+                "a": [
+                    {
+                        "b": 784,
+                        "a": 200
+                    }
+                ],
+                "b": 0
+            },
+            "b": {
+                "b": 0,
+                "a": [
+                    {
+                        "b": 784,
+                        "a": 1200
+                    }
+                ]
+            },
+            "d": {
+                "a": [
+                    {
+                        "a": 400,
+                        "b": 784
+                    }
+                ],
+                "b": 0
+            },
+            "d0": 9,
+            "z": "1",
+            "s": "OutputTempLabel"
+        },
+        {
+            "2": {
+                "a": [
+                    {
+                        "a": 1,
+                        "b": 797
+                    }
+                ],
+                "b": 0
+            },
+            "66": [
+                {
+                    "5": "Custom Text",
+                    "6": "Text",
+                    "25": "SWH"
+                }
+            ],
+            "s": "WidgetTitle",
+            "c": {
+                "b": 0,
+                "a": [
+                    {
+                        "b": 796,
+                        "a": 100.00000000000003
+                    }
+                ]
+            },
+            "b": {
+                "b": 0,
+                "a": [
+                    {
+                        "a": 800,
+                        "b": 796
+                    }
+                ]
+            },
+            "d0": 10,
+            "d": {
+                "a": [
+                    {
+                        "b": 796,
+                        "a": 800
+                    }
+                ],
+                "b": 0
+            },
+            "e": {
+                "b": 0,
+                "a": [
+                    {
+                        "a": 401,
+                        "b": 796
+                    }
+                ]
+            },
+            "z": "1"
+        },
+        {
+            "1": "Weather",
+            "2": "Symbol",
+            "z": "5",
+            "s": "Background",
+            "d0": 17,
+            "d": {
+                "b": 0,
+                "a": [
+                    {
+                        "b": 893,
+                        "a": 1600
+                    }
+                ]
+            },
+            "e": {
+                "a": [
+                    {
+                        "a": 1600,
+                        "b": 893
+                    }
+                ],
+                "b": 0
+            },
+            "h": {
+                "a": [
+                    {
+                        "b": 895,
+                        "a": 30
+                    }
+                ],
+                "b": 0
+            }
+        }
+    ],
+    "3": "SWH",
+    "4": "Solar water heater monitor",
+    "5": "ClemRz",
+    "6": 1,
+    "9": 4080,
+    "20": false,
+    "21": false,
+    "28": true,
+    "29": true,
+    "l2": "",
+    "m2": "",
+    "o2": "",
+    "p2": "",
+    "q2": "",
+    "zzz": "",
+    "n2": "",
+    "a2": 18
+}

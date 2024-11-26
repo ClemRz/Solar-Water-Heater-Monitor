@@ -17,8 +17,9 @@
     along with SolarWaterHeaterMonitor.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-String httpsGet(void) {
+String httpsPost(void) {
   HTTPSRedirect* client = new HTTPSRedirect(HTTPS_PORT);
+  client->setInsecure();
   bool connected = false;
   int attemps = 0;
   while (!connected && attemps < MAX_HTTPS_ATTEMPTS) {
@@ -38,6 +39,7 @@ String httpsGet(void) {
   if (!connected) {
 #if DEBUG
     Serial.print(F("Could not connect to server"));
+    Serial.println(HOST);
 #endif
     return "";
   }
@@ -47,7 +49,7 @@ String httpsGet(void) {
 #if DEBUG
     Serial.print(F("URL: ")); Serial.println(url);
 #endif
-  if (client->GET(url, HOST)) {
+  if (client->POST(url, HOST, "")) {
     String payload = client->getResponseBody();
 #if DEBUG
     Serial.println(F("HTTP Response: "));
@@ -62,5 +64,5 @@ String httpsGet(void) {
   }
   
   delete client;
-  client = NULL;
+  client = nullptr;
 }
